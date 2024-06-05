@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a14d21968722ed74291e3af68a866758, type: 3}
-  m_Name: Banana
+  m_Name: Steel
   m_EditorClassIdentifier: 
-  itemName: "\u9999\u8549"
-  itemImage: {fileID: 0}
-  itemNum: 0
-  itemInfo: "\u4E00\u6839\u9999\u8549\uFF0C\u5403\u4E86\u53EF\u4EE5\u56DE\u8840\u5417\uFF1F"
+  itemName: "\u94A2\u6750"
+  itemImage: {fileID: 616702965, guid: dc2bcc30dee6db84db27fc49288c425d, type: 3}
+  itemNum: 20
+  itemInfo: "\u4E00\u6BB5\u94A2\u6750\uFF0C\u53EF\u4EE5\u8BD5\u8BD5\u7528\u5B83\u505A\u51FA\u4EC0\u4E48\u4E1C\u897F"

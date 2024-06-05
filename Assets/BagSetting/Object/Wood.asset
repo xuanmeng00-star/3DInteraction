@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   itemName: "\u6728\u5934"
-  itemImage: {fileID: 0}
-  itemNum: 0
+  itemImage: {fileID: 916805232, guid: dc2bcc30dee6db84db27fc49288c425d, type: 3}
+  itemNum: 4
   itemInfo: "\u4E00\u8282\u6728\u5934\uFF0C\u6216\u8BB8\u4EC0\u4E48\u65F6\u5019\u53EF\u4EE5\u6D3E\u4E0A\u7528\u573A"

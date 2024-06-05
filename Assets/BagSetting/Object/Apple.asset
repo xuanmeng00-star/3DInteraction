@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   itemName: "\u82F9\u679C"
-  itemImage: {fileID: 0}
-  itemNum: 0
+  itemImage: {fileID: -1712979327, guid: dc2bcc30dee6db84db27fc49288c425d, type: 3}
+  itemNum: 80
   itemInfo: "\u4E00\u4E2A\u5E73\u5E73\u65E0\u5947\u7684\u82F9\u679C"

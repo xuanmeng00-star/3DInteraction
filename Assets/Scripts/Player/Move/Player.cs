@@ -15,11 +15,14 @@ public enum State
 }
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     [SerializeField] private float speed, upForce,atk;
     [SerializeField] private GameObject attack;
+    [SerializeField] private UnityEngine.UI.Slider blood;
+    [SerializeField]private int hp,maxHp;
+    public BagItem myBag;
     private Transform mainCa;
     private float vertical, horizontal;
-    private int hp,maxHp;
     private State nowSta;
     private Vector3 dirFor,dirRig,dir;
     private Animator anPlay;
@@ -27,6 +30,10 @@ public class Player : MonoBehaviour
     private bool canUp, isAnPlayer;
     private string nowAnName;
     private AnimatorStateInfo stateinfo;
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -83,6 +90,7 @@ public class Player : MonoBehaviour
     public void GetHit(int _attack)
     {
         hp -= _attack;
+        blood.value = (float)hp / maxHp;
     }
     public void SetState(State _want,string _playAnName)
     {
