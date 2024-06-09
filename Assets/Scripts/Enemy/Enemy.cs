@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent move;
     private AnimatorStateInfo anInfo;
     private bool isAnplaying;
+    private Vector3 zero,to;
     private void Start()
     {
         maxHp = hp;
@@ -23,6 +24,10 @@ public class Enemy : MonoBehaviour
         myBoold = GetComponentInChildren<UnityEngine.UI.Slider>();
         move = GetComponent<NavMeshAgent>();
         pl = Player.instance;
+        zero = transform.position;
+        to = zero + new Vector3(Random.Range((float)0, (float)3), 0, Random.Range((float)0, (float)3));
+        move.isStopped = false;
+        move.SetDestination(to);
     }
     private void Update()
     {
@@ -30,18 +35,26 @@ public class Enemy : MonoBehaviour
        
 
         if (!isAnplaying&&nowState!=State.Death)
-            if (Vector3.Distance(transform.position, pl.transform.position) > 4)
+            if (nowState != State.Attack&& Vector3.Distance(transform.position, pl.transform.position) < 2f)
+            {
+                move.isStopped = true;
+                attack.SetActive(true);
+                SetState(State.Attack, "Attack");
+            }
+            else if (Vector3.Distance(transform.position, pl.transform.position) < 4)
             {
                 if (nowState != State.Walk)
                     SetState(State.Walk, "Walk");
                 move.isStopped = false;
                 move.SetDestination(pl.transform.position);
             }
-            else if (nowState != State.Attack)
+            else if(Vector3.Distance(transform.position, to) <0.3f)
             {
-                move.isStopped = true;
-                attack.SetActive(true);
-                SetState(State.Attack, "Attack");
+                if (nowState != State.Walk)
+                    SetState(State.Walk, "Walk");
+                to = zero + new Vector3(Random.Range((float)0, (float)5), 0, Random.Range((float)0, (float)5)); 
+                move.isStopped = false;
+                move.SetDestination(to);
             }
 
     }
@@ -49,7 +62,7 @@ public class Enemy : MonoBehaviour
     {
         anInfo = anEn.GetCurrentAnimatorStateInfo(0);
         isAnplaying = !(anInfo.normalizedTime>=0.95f);
-        if(!isAnplaying)
+        if(!isAnplaying&& nowState != State.Death)
         {
             attack.SetActive(false);
             SetState(State.Idle, "Idle");
@@ -73,7 +86,7 @@ public class Enemy : MonoBehaviour
     {
         SetState(State.Death, "Die");
         if(deathObj!=null)
-            Instantiate(deathObj, transform.position+Vector3.up*3, Quaternion.identity);
+            Instantiate(deathObj, new Vector3 (transform .position .x ,0.5f,transform .position .y), Quaternion.identity);
         Destroy(this.gameObject, 3);
     }
     private void OnTriggerEnter(Collider other)
